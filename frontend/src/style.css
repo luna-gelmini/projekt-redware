@@ -1,0 +1,93 @@
+:root, .dark {
+    --background-primary: #36393f;
+    --background-secondary: #2f3136;
+    --background-secondary-alt: #292b2f;
+    --background-tertiary: #202225;
+    --background-accent: #40444b;
+    --background-floating: #18191c;
+    --background-modifier-hover: rgba(79,84,92,0.16);
+    --background-modifier-active: rgba(79,84,92,0.24);
+    --background-modifier-selected: rgba(79,84,92,0.32);
+    --text-normal: #dcddde;
+    --text-muted: #72767d;
+    --text-link: #00b0f4;
+    --text-positive: #43b581;
+    --text-warning: #faa61a;
+    --text-danger: #f04747;
+    --header-primary: #fff;
+    --header-secondary: #b9bbbe;
+    --interactive-normal: #b9bbbe;
+    --interactive-hover: #dcddde;
+    --interactive-active: #fff;
+    --interactive-muted: #4f545c;
+    --channels-default: #8e9297;
+    --border-color: rgba(0,0,0,0.2);
+    --mention-background: hsla(235, 85.6%, 64.7%, 0.3);
+    --mention-foreground: hsl(235, 85.6%, 64.7%);
+    --scrollbar-track: #2e3338;
+    --scrollbar-thumb: #1a1b1e;
+  }
+  .light {
+    --background-primary: #ffffff;
+    --background-secondary: #f2f3f5;
+    --background-secondary-alt: #e3e5e8;
+    --background-tertiary: #e3e5e8;
+    --background-accent: #747f8d;
+    --background-floating: #ffffff;
+    --background-modifier-hover: rgba(116,127,141,0.08);
+    --background-modifier-active: rgba(116,127,141,0.16);
+    --background-modifier-selected: rgba(116,127,141,0.24);
+    --text-normal: #2e3338;
+    --text-muted: #747f8d;
+    --text-link: #0067e0;
+    --text-positive: #2d6d4b;
+    --text-warning: #7b4712;
+    --text-danger: #d83c3e;
+    --header-primary: #060607;
+    --header-secondary: #4f5660;
+    --interactive-normal: #4f5660;
+    --interactive-hover: #060607;
+    --interactive-active: #060607;
+    --interactive-muted: #c7ccd1;
+    --channels-default: #5c6470;
+    --border-color: rgba(0,0,0,0.1);
+    --mention-background: hsla(235, 85.6%, 64.7%, 0.1);
+    --mention-foreground: hsl(235, 85.6%, 64.7%);
+    --scrollbar-track: #f2f3f5;
+    --scrollbar-thumb: #e3e5e8;
+  }
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+  ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--background-secondary); }
+  .compact-message-group:hover .timestamp { opacity: 1; }
+  body { overflow: hidden; margin: 0; font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+  /* Custom Animations */
+  @keyframes cool-fade-in {
+    from { opacity: 0; transform: scale(0.97); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .animate-cool-fade-in { animation: cool-fade-in 0.15s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+
+  /* Login Screen Background (Static) */
+  .login-background {
+    background-color: #5865f2;
+    background-image:
+        radial-gradient(at 27% 37%, hsla(215, 98%, 62%, 1) 0px, transparent 50%),
+        radial-gradient(at 97% 21%, hsla(215, 98%, 62%, 1) 0px, transparent 50%),
+        radial-gradient(at 2% 95%, hsla(215, 98%, 62%, 1) 0px, transparent 50%),
+        radial-gradient(at 91% 93%, hsla(215, 98%, 62%, 1) 0px, transparent 50%),
+        radial-gradient(at 33% 50%, hsla(215, 98%, 62%, 1) 0px, transparent 50%),
+        radial-gradient(at 75% 70%, hsla(215, 98%, 62%, 1) 0px, transparent 50%);
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0;
+  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  
+  .toggle-checkbox {
+    transition: transform .2s ease-in-out;
+  }
+  .toggle-checkbox:checked {
+    transform: translateX(16px);
+  }

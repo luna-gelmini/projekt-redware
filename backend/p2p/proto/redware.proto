@@ -1,0 +1,157 @@
+syntax = "proto3";
+
+package p2p;
+
+option go_package = "projekt-redware/backend/p2p/proto";
+
+message Packet {
+    oneof payload {
+        Handshake handshake = 1;
+        ChatMessage chat_message = 2;
+        TypingIndicator typing = 3;
+        SyncRequest sync_request = 4;
+        SyncResponse sync_response = 5;
+        ChannelMetadata channel_metadata = 6;
+        ChannelJoinRequest channel_join_request = 7;
+        ChannelJoinResponse channel_join_response = 8;
+        MemberSync member_sync = 9;
+        ChannelDelete channel_delete = 10;
+        WebRTCSignal webrtc_signal = 11;
+        HistoryQuery history_query = 12;
+        HistoryOffer history_offer = 13;
+        ProfileQuery profile_query = 14;
+        ProfileResponse profile_response = 15;
+    }
+}
+
+message HistoryQuery {
+    string requester_id = 1;
+    string channel_id = 2;
+    string last_message_id = 3; 
+    int64 last_message_timestamp = 4; 
+}
+
+message HistoryOffer {
+    string provider_id = 1;
+    string channel_id = 2;
+    int32 available_count = 3;
+}
+
+message HistoryFetchRequest {
+    string requester_id = 1;
+    string channel_id = 2;
+    string last_message_id = 3;
+    int64 last_message_timestamp = 4;
+}
+
+message HistoryFetchResponse {
+    repeated ChatMessage messages = 1;
+}
+
+message WebRTCSignal {
+    string sender_id = 1;
+    string target_id = 2;
+    string type = 3;      
+    string payload = 4;   
+    string channel_id = 5;
+}
+
+message ChannelDelete {
+    string channel_id = 1;
+}
+
+message MemberSync {
+    string guild_id = 1;
+    repeated Member members = 2;
+}
+
+message Member {
+    string user_id = 1;
+    string username = 2;
+    string avatar = 3;
+    string status = 4;
+}
+
+message Handshake {
+    string user_id = 1;
+    string username = 2;
+    string public_key = 3;
+    string signature = 4;
+    string server_name = 5;
+    bool is_public = 6;
+    string server_icon = 7;
+    string server_description = 8;
+    repeated ChannelMetadata channels = 9;
+    string join_code = 10;
+}
+
+message ChatMessage {
+    string id = 1;
+    string content = 2;
+    int64 timestamp = 3;
+    string reply_to_id = 4;
+    repeated Attachment attachments = 5;
+    string channel_id = 6;
+    string sender_id = 7;
+    string sender_username = 8;
+}
+
+message Attachment {
+    string filename = 1;
+    string url = 2;
+    string mime_type = 3;
+    int64 size = 4;
+}
+
+message TypingIndicator {
+    bool is_typing = 1;
+}
+
+message SyncRequest {
+    int64 last_sync_time = 1;
+    map<string, int64> channel_sync_times = 2;
+}
+
+message SyncResponse {
+    repeated ChatMessage messages = 1;
+}
+
+message ChannelMetadata {
+    string channel_id = 1;
+    string owner_id = 2;
+    string topic = 3;
+    bool is_private = 4;
+    string software_agent = 5;
+    bool is_modded = 6;
+    string signature = 7;
+    string icon = 8;
+    string description = 9;
+    string type = 10;
+    string name = 11;
+}
+
+message ChannelJoinRequest {
+    string channel_id = 1;
+    string password_hash = 2;
+}
+
+message ChannelJoinResponse {
+    bool success = 1;
+    ChannelMetadata metadata = 2;
+    string error_message = 3;
+}
+
+message ProfileQuery {
+    string requester_id = 1;
+    string target_id = 2;
+}
+
+message ProfileResponse {
+    string user_id = 1;
+    string username = 2;
+    string avatar_url = 3;
+    string status = 4;
+    string status_message = 5;
+    string bio = 6;
+    int32 p2p_port = 7;
+}
